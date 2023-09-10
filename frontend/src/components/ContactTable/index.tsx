@@ -69,6 +69,7 @@ const ContactTable = ({ data }: { data: RowData[] }) => {
           search: search,
         })
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   useEffect(() => {

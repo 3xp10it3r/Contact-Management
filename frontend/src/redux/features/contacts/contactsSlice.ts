@@ -152,6 +152,4 @@ export const contactsSlice = createSlice({
   },
 });
 
-export const {} = contactsSlice.actions;
-
 export default contactsSlice.reducer;
