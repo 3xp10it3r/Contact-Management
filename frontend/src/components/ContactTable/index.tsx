@@ -117,6 +117,8 @@ const ContactTable = ({ data }: { data: RowData[] }) => {
       verticalSpacing="xs"
       sx={{ tableLayout: "fixed" }}
       className="h-full"
+      highlightOnHover
+      striped
     >
       <thead className="bg-gradient-to-b from-primary-400 to-primary-600">
         <tr>

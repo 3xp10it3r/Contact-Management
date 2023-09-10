@@ -1,5 +1,5 @@
 import { Button, Divider, Modal, Select, Text, TextInput } from "@mantine/core";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCurrentModal } from "../../redux/features/common/commonSlice";
 import { IconXboxX } from "@tabler/icons-react";
 import { useForm, zodResolver } from "@mantine/form";
@@ -10,7 +10,7 @@ import {
   addContact,
   editContact,
 } from "../../redux/features/contacts/contactsSlice";
-import { RootState, store } from "../../redux/store";
+import { store } from "../../redux/store";
 import { toast } from "react-toastify";
 
 const ContactModal = ({
@@ -21,9 +21,6 @@ const ContactModal = ({
   contactDetails: RowData | null;
 }) => {
   const dispatch = useDispatch();
-  const { addStatus, editStatus } = useSelector(
-    (state: RootState) => state.contacts
-  );
   const form = useForm({
     initialValues: {
       name: contactDetails?.name || "",
@@ -52,19 +49,14 @@ const ContactModal = ({
     if (title === "Add") {
       store
         .dispatch(addContact(v))
-        .then(
-          () => addStatus === "succeeded" && toast("Contact Added Successfully")
-        )
+        .then(() => toast("Contact Added Successfully"))
         .then(() => dispatch(setCurrentModal({ modalName: null })))
         .catch((err) => toast(err));
     } else {
       v.id = contactDetails?.id;
       store
         .dispatch(editContact(v))
-        .then(
-          () =>
-            editStatus === "succeeded" && toast("Contact Edited Successfully")
-        )
+        .then(() => toast("Contact Edited Successfully"))
         .then(() => dispatch(setCurrentModal({ modalName: null })))
         .catch((err) => toast(err));
     }
